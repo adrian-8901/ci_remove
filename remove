@@ -1,0 +1,15 @@
+#!/bin/bash
+
+free -h
+df -h
+
+tg(){
+	bot_api=1766391957:AAElr4cBgT6F1nR98PL1cPIqfB0PsURBbEI # Your tg bot api, dont use my one haha, it's better to encrypt bot api too.
+	your_telegram_id=$1 # No need to touch 
+	msg=$2 # No need to touch
+	curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" --data "text=$msg&chat_id=${your_telegram_id}"
+}
+
+id=1244803400 # Your telegram id
+
+tmate -S /tmp/tmate.sock new-session -d && tmate -S /tmp/tmate.sock wait tmate-ready && send_shell=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}') && tg $id "Build Failed" && tg $id "$send_shell" && ccache -s && sleep 2m
